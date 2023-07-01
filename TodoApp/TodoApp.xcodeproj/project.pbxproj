@@ -12,7 +12,6 @@
 		4C141FF32A44E18A00962761 /* SetupTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C141FF22A44E18A00962761 /* SetupTodoItemViewController.swift */; };
 		4C141FF82A44E3AE00962761 /* SetupTodoItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C141FF72A44E3AE00962761 /* SetupTodoItemPresenter.swift */; };
 		4C141FFA2A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C141FF92A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift */; };
-		4C141FFD2A44E54C00962761 /* SetupTodoItemAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C141FFC2A44E54C00962761 /* SetupTodoItemAssembly.swift */; };
 		4C14203C2A462BA000962761 /* UIView+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14203B2A462BA000962761 /* UIView+Additional.swift */; };
 		4C14203E2A462D5200962761 /* NSObjectProtocol+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14203D2A462D5200962761 /* NSObjectProtocol+Additional.swift */; };
 		4C1420402A46366900962761 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14203F2A46366800962761 /* CustomScrollView.swift */; };
@@ -26,6 +25,18 @@
 		4C1F6A882A3D0E7F000A7D05 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A872A3D0E7F000A7D05 /* TodoItem.swift */; };
 		4C1F6A8A2A3D0EB5000A7D05 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A892A3D0EB5000A7D05 /* FileCache.swift */; };
 		4C1F6A8C2A3D0ECC000A7D05 /* Date+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A8B2A3D0ECC000A7D05 /* Date+Additional.swift */; };
+		4C34C5D12A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D02A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift */; };
+		4C34C5D32A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D22A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift */; };
+		4C34C5D82A4DCF8C00ADEE7B /* TodoItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D72A4DCF8C00ADEE7B /* TodoItemsListViewController.swift */; };
+		4C34C5DA2A4DCF9C00ADEE7B /* TodoItemsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D92A4DCF9C00ADEE7B /* TodoItemsListCell.swift */; };
+		4C34C5DC2A4DEBEE00ADEE7B /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5DB2A4DEBEE00ADEE7B /* CheckButton.swift */; };
+		4C34C5E02A4DFB6800ADEE7B /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5DF2A4DFB6800ADEE7B /* VerticallyCenteredTextView.swift */; };
+		4C34C5E22A4E264E00ADEE7B /* TodoItemsProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5E12A4E264E00ADEE7B /* TodoItemsProps.swift */; };
+		4C34C5E42A4F402D00ADEE7B /* TodoItemProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5E32A4F402D00ADEE7B /* TodoItemProps.swift */; };
+		4C34C5E72A4F4C7C00ADEE7B /* ChooseImportantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5E62A4F4C7C00ADEE7B /* ChooseImportantView.swift */; };
+		4C34C5E92A4F531B00ADEE7B /* ChooseDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5E82A4F531B00ADEE7B /* ChooseDataView.swift */; };
+		4C34C5EB2A4F8B2E00ADEE7B /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */; };
+		4C34C5ED2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */; };
 		5128D0588557480A2EE67029 /* Pods_TodoApp_TodoAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C8616F1255E98980D954A4 /* Pods_TodoApp_TodoAppUITests.framework */; };
 		8D115550C55550DB1A4530A7 /* Pods_TodoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFDC359439A8E3C01B80AFFC /* Pods_TodoApp.framework */; };
 /* End PBXBuildFile section */
@@ -53,7 +64,6 @@
 		4C141FF22A44E18A00962761 /* SetupTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTodoItemViewController.swift; sourceTree = "<group>"; };
 		4C141FF72A44E3AE00962761 /* SetupTodoItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTodoItemPresenter.swift; sourceTree = "<group>"; };
 		4C141FF92A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTodoItemPresenterProtocol.swift; sourceTree = "<group>"; };
-		4C141FFC2A44E54C00962761 /* SetupTodoItemAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTodoItemAssembly.swift; sourceTree = "<group>"; };
 		4C14203B2A462BA000962761 /* UIView+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additional.swift"; sourceTree = "<group>"; };
 		4C14203D2A462D5200962761 /* NSObjectProtocol+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObjectProtocol+Additional.swift"; sourceTree = "<group>"; };
 		4C14203F2A46366800962761 /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
@@ -71,6 +81,18 @@
 		4C1F6A872A3D0E7F000A7D05 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		4C1F6A892A3D0EB5000A7D05 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		4C1F6A8B2A3D0ECC000A7D05 /* Date+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additional.swift"; sourceTree = "<group>"; };
+		4C34C5D02A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListPresenter.swift; sourceTree = "<group>"; };
+		4C34C5D22A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListPresenterProtocol.swift; sourceTree = "<group>"; };
+		4C34C5D72A4DCF8C00ADEE7B /* TodoItemsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListViewController.swift; sourceTree = "<group>"; };
+		4C34C5D92A4DCF9C00ADEE7B /* TodoItemsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListCell.swift; sourceTree = "<group>"; };
+		4C34C5DB2A4DEBEE00ADEE7B /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		4C34C5DF2A4DFB6800ADEE7B /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
+		4C34C5E12A4E264E00ADEE7B /* TodoItemsProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsProps.swift; sourceTree = "<group>"; };
+		4C34C5E32A4F402D00ADEE7B /* TodoItemProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemProps.swift; sourceTree = "<group>"; };
+		4C34C5E62A4F4C7C00ADEE7B /* ChooseImportantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImportantView.swift; sourceTree = "<group>"; };
+		4C34C5E82A4F531B00ADEE7B /* ChooseDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDataView.swift; sourceTree = "<group>"; };
+		4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
+		4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionDelegate.swift; sourceTree = "<group>"; };
 		50DC8AC9B9AC148909719C7B /* Pods-TodoApp-TodoAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoApp-TodoAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-TodoApp-TodoAppUITests/Pods-TodoApp-TodoAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A8EFF4C0781A710DDEEABE2 /* Pods_TodoAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B045DDEC76636D26DBF94A19 /* Pods-TodoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoAppTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoAppTests/Pods-TodoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +147,7 @@
 		4C141FED2A44C3FE00962761 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4C34C5CB2A4DCEF200ADEE7B /* TodoItemsList */,
 				4C141FEE2A44C40600962761 /* SetupTodoItem */,
 			);
 			path = UI;
@@ -133,7 +156,6 @@
 		4C141FEE2A44C40600962761 /* SetupTodoItem */ = {
 			isa = PBXGroup;
 			children = (
-				4C141FFB2A44E53000962761 /* Assembly */,
 				4C141FF62A44E39500962761 /* Presenter */,
 				4C141FEF2A44C41800962761 /* View */,
 			);
@@ -146,6 +168,8 @@
 				4C141FF02A44C42C00962761 /* SetupTodoItemView.swift */,
 				4C141FF22A44E18A00962761 /* SetupTodoItemViewController.swift */,
 				4C14203F2A46366800962761 /* CustomScrollView.swift */,
+				4C34C5E62A4F4C7C00ADEE7B /* ChooseImportantView.swift */,
+				4C34C5E82A4F531B00ADEE7B /* ChooseDataView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,16 +179,9 @@
 			children = (
 				4C141FF72A44E3AE00962761 /* SetupTodoItemPresenter.swift */,
 				4C141FF92A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift */,
+				4C34C5E32A4F402D00ADEE7B /* TodoItemProps.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		4C141FFB2A44E53000962761 /* Assembly */ = {
-			isa = PBXGroup;
-			children = (
-				4C141FFC2A44E54C00962761 /* SetupTodoItemAssembly.swift */,
-			);
-			path = Assembly;
 			sourceTree = "<group>";
 		};
 		4C14203A2A462B7800962761 /* Extensions */ = {
@@ -211,6 +228,10 @@
 				4C1F6A652A3D0D86000A7D05 /* Info.plist */,
 				4C1F6A872A3D0E7F000A7D05 /* TodoItem.swift */,
 				4C1F6A892A3D0EB5000A7D05 /* FileCache.swift */,
+				4C34C5DB2A4DEBEE00ADEE7B /* CheckButton.swift */,
+				4C34C5DF2A4DFB6800ADEE7B /* VerticallyCenteredTextView.swift */,
+				4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */,
+				4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
@@ -230,6 +251,34 @@
 				4C1F6A7A2A3D0D86000A7D05 /* TodoAppUITestsLaunchTests.swift */,
 			);
 			path = TodoAppUITests;
+			sourceTree = "<group>";
+		};
+		4C34C5CB2A4DCEF200ADEE7B /* TodoItemsList */ = {
+			isa = PBXGroup;
+			children = (
+				4C34C5D42A4DCF6400ADEE7B /* View */,
+				4C34C5CF2A4DCF2F00ADEE7B /* Presenter */,
+			);
+			path = TodoItemsList;
+			sourceTree = "<group>";
+		};
+		4C34C5CF2A4DCF2F00ADEE7B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4C34C5D02A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift */,
+				4C34C5D22A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift */,
+				4C34C5E12A4E264E00ADEE7B /* TodoItemsProps.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4C34C5D42A4DCF6400ADEE7B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C34C5D72A4DCF8C00ADEE7B /* TodoItemsListViewController.swift */,
+				4C34C5D92A4DCF9C00ADEE7B /* TodoItemsListCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F4D3EB395033F7C069D81F60 /* Frameworks */ = {
@@ -480,17 +529,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C34C5E72A4F4C7C00ADEE7B /* ChooseImportantView.swift in Sources */,
+				4C34C5E02A4DFB6800ADEE7B /* VerticallyCenteredTextView.swift in Sources */,
 				4C141FF32A44E18A00962761 /* SetupTodoItemViewController.swift in Sources */,
 				4C1F6A582A3D0D84000A7D05 /* AppDelegate.swift in Sources */,
+				4C34C5DC2A4DEBEE00ADEE7B /* CheckButton.swift in Sources */,
+				4C34C5E92A4F531B00ADEE7B /* ChooseDataView.swift in Sources */,
 				4C141FFA2A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift in Sources */,
 				4C14203E2A462D5200962761 /* NSObjectProtocol+Additional.swift in Sources */,
 				4C1F6A8C2A3D0ECC000A7D05 /* Date+Additional.swift in Sources */,
+				4C34C5E22A4E264E00ADEE7B /* TodoItemsProps.swift in Sources */,
 				4C1420402A46366900962761 /* CustomScrollView.swift in Sources */,
 				4C141FF12A44C42C00962761 /* SetupTodoItemView.swift in Sources */,
-				4C141FFD2A44E54C00962761 /* SetupTodoItemAssembly.swift in Sources */,
+				4C34C5E42A4F402D00ADEE7B /* TodoItemProps.swift in Sources */,
 				4C141FF82A44E3AE00962761 /* SetupTodoItemPresenter.swift in Sources */,
 				4C1F6A882A3D0E7F000A7D05 /* TodoItem.swift in Sources */,
+				4C34C5D82A4DCF8C00ADEE7B /* TodoItemsListViewController.swift in Sources */,
+				4C34C5D12A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift in Sources */,
 				4C14203C2A462BA000962761 /* UIView+Additional.swift in Sources */,
+				4C34C5ED2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift in Sources */,
+				4C34C5D32A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift in Sources */,
+				4C34C5EB2A4F8B2E00ADEE7B /* CustomTransition.swift in Sources */,
+				4C34C5DA2A4DCF9C00ADEE7B /* TodoItemsListCell.swift in Sources */,
 				4C1F6A8A2A3D0EB5000A7D05 /* FileCache.swift in Sources */,
 				4C1F6A5A2A3D0D84000A7D05 /* SceneDelegate.swift in Sources */,
 			);
@@ -670,7 +730,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -700,7 +760,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

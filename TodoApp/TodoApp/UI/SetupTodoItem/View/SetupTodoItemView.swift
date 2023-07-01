@@ -8,15 +8,8 @@
 import Foundation
 import UIKit
 
-protocol SetupTodoItemViewDelegate: AnyObject {
-    func dateDidChanged(date: Date)
-    func updateDescriptionField(text: String)
-    func updateImportance(importance: Importance)
-    func deleteTodoItem()
-}
-
 class SetupTodoItemView: UIView {
-    weak var delegate: SetupTodoItemViewDelegate?
+    private var props: TodoItemProps?
     
     private let descriptionField = UITextView().applying { textField in
         textField.font = .systemFont(ofSize: 17)
@@ -87,85 +80,9 @@ class SetupTodoItemView: UIView {
         return view
     }()
     
-    private lazy var chooseImportance: UIView = {
-        let view = UIView()
-        let label = UILabel()
-        let segmentControl = UISegmentedControl(items: [UIImage(systemName: "arrow.down") ?? "", "нет", UIImage(named: "excplanationMark") ?? ""])
-        segmentControl.selectedSegmentIndex = 1
-//        segmentControl.backgroundColor = UIColor(named: "segmentControlColor")
-        label.text = "Важность"
-        view.addSubview(label)
-        view.addSubview(segmentControl)
-
-        label.snp.makeConstraints { make in
-            make.bottom.top.equalToSuperview()
-            make.left.equalToSuperview().inset(16)
-        }
-        
-        segmentControl.snp.makeConstraints { make in
-            make.bottom.top.equalToSuperview().inset(10)
-            make.right.equalToSuperview().inset(12)
-            make.width.equalTo(150)
-        }
-        
-        segmentControl.addTarget(self, action: #selector(segmentControlDidChanged), for: .valueChanged)
-        return view
-    }()
+    private lazy var chooseImportance = ChooseImportantView()
     
-    private lazy var datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.backgroundColor = UIColor(named: "interfaceColor")
-        datePicker.isHidden = true
-        datePicker.date = Calendar.current.date(byAdding: .day, value: 1, to: datePicker.date) ?? datePicker.date
-        datePicker.addTarget(self, action: #selector(dataSelected), for: .valueChanged)
-        return datePicker
-    }()
-    
-    private lazy var buttonDate: UIButton = {
-        let buttonDate = UIButton()
-        
-        buttonDate.setTitle(datePicker.date.toString(), for: .normal)
-        buttonDate.setTitleColor(.systemBlue, for: .normal)
-        buttonDate.translatesAutoresizingMaskIntoConstraints = false
-        buttonDate.titleLabel?.font = .systemFont(ofSize: 13)
-        buttonDate.isHidden = true
-        buttonDate.addTarget(self, action: #selector(buttonDateDidTapped), for: .touchDown)
-        
-        return buttonDate
-    }()
-    
-    private lazy var chooseData: UIView = {
-        let view = UIView()
-        let label = UILabel()
-        let dateSwitch = UISwitch()
-        
-        label.text = "Сделать до"
-        view.addSubview(label)
-        view.addSubview(dateSwitch)
-        view.addSubview(buttonDate)
-        
-        label.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(8)
-            make.left.equalToSuperview().inset(16)
-        }
-        
-        dateSwitch.snp.makeConstraints { make in
-            make.bottom.top.equalToSuperview().inset(10)
-            make.right.equalToSuperview().inset(12)
-        }
-    
-        buttonDate.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(16)
-            make.top.equalTo(label.snp.bottom)
-            make.bottom.equalToSuperview().inset(8)
-            make.height.equalTo(16)
-        }
-        
-        dateSwitch.addTarget(self, action: #selector(dateSwitchDidChanged(paramGet:)), for: .valueChanged)
-        return view
-    }()
+    private lazy var chooseData = ChooseDataView()
     
     private lazy var scrollView: CustomScrollView = {
         let view = CustomScrollView()
@@ -180,10 +97,15 @@ class SetupTodoItemView: UIView {
         descriptionField.delegate = self
         addSubviews()
         setConstraints()
+        chooseData.datePicker.addTarget(self, action: #selector(dataSelected), for: .valueChanged)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
+    @objc func dataSelected() {
+        props?.updateDate?(chooseData.datePicker.date)
+    }
+    
     private func addSubviews() {
         addSubview(scrollView)
         scrollView.addSubview(mainStackView)
@@ -195,7 +117,7 @@ class SetupTodoItemView: UIView {
             separatorViewForImportance,
             chooseData,
             separatorViewForDate,
-            datePicker
+            chooseData.datePicker
         ].forEach { optionsStackView.addArrangedSubview($0) }
     }
     
@@ -244,7 +166,7 @@ class SetupTodoItemView: UIView {
             make.left.right.equalToSuperview().inset(32)
         }
         
-        datePicker.snp.makeConstraints { make in
+        chooseData.datePicker.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.bottom.equalToSuperview()
         }
@@ -258,59 +180,12 @@ class SetupTodoItemView: UIView {
         }
     }
     
-    @objc private func dateSwitchDidChanged(paramGet: UISwitch) {
-        if paramGet.isOn {
-            buttonDate.isHidden = false
-        } else {
-            buttonDate.isHidden = true
-            datePicker.isHidden = true
-            separatorViewForDate.isHidden = true
-        }
-    }
-    
-    @objc private func buttonDateDidTapped() {
-        if datePicker.isHidden {
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) { [weak self] in
-                guard let self else { return }
-                self.datePicker.isHidden = false
-                self.separatorViewForDate.isHidden = false
-            }
-        } else {
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) { [weak self] in
-                guard let self else { return }
-                self.datePicker.isHidden = true
-                self.separatorViewForDate.isHidden = true
-            }
-        }
-    }
-    
-    @objc private func dataSelected() {
-        buttonDate.setTitle(datePicker.date.toString(), for: .normal)
-        delegate?.dateDidChanged(date: datePicker.date)
-    }
-   
-    @objc private func hideDateSwitch() {
-        datePicker.isHidden = true
-    }
-    
     @objc func textFieldTapDone(sender: Any) {
         descriptionField.endEditing(true)
     }
     
-    @objc func segmentControlDidChanged(target: UISegmentedControl) {
-        let segmentedIndex = target.selectedSegmentIndex
-        switch segmentedIndex {
-        case 0:
-            delegate?.updateImportance(importance: .unimportant)
-        case 2:
-            delegate?.updateImportance(importance: .important)
-        default:
-            delegate?.updateImportance(importance: .common)
-        }
-    }
-    
     @objc func deleteButtonDidTap() {
-        delegate?.deleteTodoItem()
+        props?.deleteItem?()
     }
     
     func closeDescriptionFieldIfNeeded(point: CGPoint) {
@@ -363,7 +238,7 @@ extension SetupTodoItemView: UITextViewDelegate {
             descriptionField.text = "Что хотите сделать?"
             descriptionField.textColor = UIColor.lightGray
         } else {
-            delegate?.updateDescriptionField(text: descriptionField.text)
+            props?.textDidChange?(descriptionField.text)
         }
     }
     
@@ -378,5 +253,17 @@ extension SetupTodoItemView: UITextViewDelegate {
                 }
             }
         }
+    }
+}
+
+extension SetupTodoItemView {
+    func render(props: TodoItemProps?) {
+        self.props = props
+        descriptionField.text = props?.text
+        if descriptionField.text != "" {
+            descriptionField.textColor = UIColor(named: "textColor")
+        }
+        self.chooseImportance.render(props: props)
+        self.chooseData.render(props: props)
     }
 }

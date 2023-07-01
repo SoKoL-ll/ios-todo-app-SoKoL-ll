@@ -6,11 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SetupTodoItemPresenterProtocol: AnyObject {
-    func dateDidChanged(date: Date)
-    func updateDescriptionField(text: String)
-    func updateImportance(importance: Importance)
-    func saveTodoItem()
-    func deleteTodoItem()
+    func build()
+    func open() -> UIViewController
+    func setupWithTodoItem(id: String)
 }
