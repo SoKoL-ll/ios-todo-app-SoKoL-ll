@@ -15,8 +15,14 @@ protocol CheckButtonRendering: UIButton {
 
 class CheckButton: UIButton, CheckButtonRendering {
     private var props: TodoItemCellProps.CheckButtonProps?
-    let checkedImage = UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24))?.withRenderingMode(.alwaysOriginal).withTintColor(.lightGray)
-    let uncheckedImage = UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24))?.withRenderingMode(.alwaysOriginal).withTintColor(.systemGreen)
+    let checkedImage = UIImage(systemName: "circle",
+                               withConfiguration: UIImage.SymbolConfiguration(
+                                pointSize: 24))?
+        .withRenderingMode(.alwaysOriginal).withTintColor(.lightGray)
+    let uncheckedImage = UIImage(systemName: "checkmark.circle.fill",
+                                 withConfiguration: UIImage.SymbolConfiguration(
+                                    pointSize: 24
+                                 ))?.withRenderingMode(.alwaysOriginal).withTintColor(.systemGreen)
 
     var isChecked: Bool = false {
         didSet {
@@ -31,7 +37,6 @@ class CheckButton: UIButton, CheckButtonRendering {
             }
         }
     }
-    
     override func awakeFromNib() {
         self.addTarget(self, action:#selector(buttonClicked(sender:)), for: UIControl.Event.touchUpInside)
     }

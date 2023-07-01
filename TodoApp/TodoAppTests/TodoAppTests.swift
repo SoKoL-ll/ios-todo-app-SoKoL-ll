@@ -14,7 +14,13 @@ final class TodoAppTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        todoItem = TodoItem(id: "4", text: "купить машину", importance: Importance.unimportant, deadline: Date.toDate(from: "11.11.2024") ?? Date(), isDone: true, creationDate: Date.toDate(from: "11.12.2024") ?? Date(), modifiedDate: Date.toDate(from: "11.10.2024") ?? Date())
+        todoItem = TodoItem(id: "4",
+                            text: "купить машину",
+                            importance: Importance.unimportant,
+                            deadline: Date.toDate(from: "11.11.2024") ?? Date(),
+                            isDone: true,
+                            creationDate: Date.toDate(from: "11.12.2024") ?? Date(),
+                            modifiedDate: Date.toDate(from: "11.10.2024") ?? Date())
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 

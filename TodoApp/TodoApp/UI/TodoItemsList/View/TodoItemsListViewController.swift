@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CocoaLumberjack
 
 protocol Rendering {
     func render(props: TodoItemsProps)
@@ -33,7 +34,11 @@ class TodoItemsListViewController: UIViewController {
         view.layer.shadowColor = UIColor.gray.cgColor
         view.layer.shadowRadius = 10
         view.layer.shadowOpacity = 0.3
-        view.setImage(UIImage(systemName: "plus.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 44))?.withRenderingMode(.alwaysOriginal).withTintColor(.systemBlue), for: .normal)
+        view.setImage(UIImage(systemName: "plus.circle.fill",
+                              withConfiguration: UIImage.SymbolConfiguration(
+                                pointSize: 44
+                              )
+                             )?.withRenderingMode(.alwaysOriginal).withTintColor(.systemBlue), for: .normal)
         view.addTarget(nil, action: #selector(createNewCell), for: .touchUpInside)
         return view
     }()
@@ -44,6 +49,7 @@ class TodoItemsListViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        DDLog.add(DDOSLogger.sharedInstance)
         title = "Мои дела"
         setupTableView()
         setupConstraints()
