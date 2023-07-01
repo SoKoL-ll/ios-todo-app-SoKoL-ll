@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import CocoaLumberjack
 
 protocol SetupTodoItemRendering {
     func render(props: TodoItemProps)
@@ -34,6 +35,10 @@ class SetupTodoItemViewController: UIViewController {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    override func viewDidLoad() {
+        DDLog.add(DDOSLogger.sharedInstance)
     }
     
     @objc func saveTodoItem() {

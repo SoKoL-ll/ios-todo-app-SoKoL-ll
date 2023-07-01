@@ -22,9 +22,6 @@
 		4C1F6A6F2A3D0D86000A7D05 /* TodoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A6E2A3D0D86000A7D05 /* TodoAppTests.swift */; };
 		4C1F6A792A3D0D86000A7D05 /* TodoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A782A3D0D86000A7D05 /* TodoAppUITests.swift */; };
 		4C1F6A7B2A3D0D86000A7D05 /* TodoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A7A2A3D0D86000A7D05 /* TodoAppUITestsLaunchTests.swift */; };
-		4C1F6A882A3D0E7F000A7D05 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A872A3D0E7F000A7D05 /* TodoItem.swift */; };
-		4C1F6A8A2A3D0EB5000A7D05 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A892A3D0EB5000A7D05 /* FileCache.swift */; };
-		4C1F6A8C2A3D0ECC000A7D05 /* Date+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6A8B2A3D0ECC000A7D05 /* Date+Additional.swift */; };
 		4C34C5D12A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D02A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift */; };
 		4C34C5D32A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D22A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift */; };
 		4C34C5D82A4DCF8C00ADEE7B /* TodoItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5D72A4DCF8C00ADEE7B /* TodoItemsListViewController.swift */; };
@@ -37,6 +34,8 @@
 		4C34C5E92A4F531B00ADEE7B /* ChooseDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5E82A4F531B00ADEE7B /* ChooseDataView.swift */; };
 		4C34C5EB2A4F8B2E00ADEE7B /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */; };
 		4C34C5ED2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */; };
+		4C6612462A4FBFE100AC550F /* TodoItemPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6612452A4FBFE100AC550F /* TodoItemPackage */; };
+		4C6612492A4FC36200AC550F /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6612482A4FC36200AC550F /* CocoaLumberjack */; };
 		5128D0588557480A2EE67029 /* Pods_TodoApp_TodoAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C8616F1255E98980D954A4 /* Pods_TodoApp_TodoAppUITests.framework */; };
 		8D115550C55550DB1A4530A7 /* Pods_TodoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFDC359439A8E3C01B80AFFC /* Pods_TodoApp.framework */; };
 /* End PBXBuildFile section */
@@ -78,9 +77,6 @@
 		4C1F6A742A3D0D86000A7D05 /* TodoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1F6A782A3D0D86000A7D05 /* TodoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAppUITests.swift; sourceTree = "<group>"; };
 		4C1F6A7A2A3D0D86000A7D05 /* TodoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4C1F6A872A3D0E7F000A7D05 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		4C1F6A892A3D0EB5000A7D05 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
-		4C1F6A8B2A3D0ECC000A7D05 /* Date+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additional.swift"; sourceTree = "<group>"; };
 		4C34C5D02A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListPresenter.swift; sourceTree = "<group>"; };
 		4C34C5D22A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListPresenterProtocol.swift; sourceTree = "<group>"; };
 		4C34C5D72A4DCF8C00ADEE7B /* TodoItemsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsListViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C6612492A4FC36200AC550F /* CocoaLumberjack in Frameworks */,
+				4C6612462A4FBFE100AC550F /* TodoItemPackage in Frameworks */,
 				8D115550C55550DB1A4530A7 /* Pods_TodoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,7 +185,6 @@
 		4C14203A2A462B7800962761 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4C1F6A8B2A3D0ECC000A7D05 /* Date+Additional.swift */,
 				4C14203B2A462BA000962761 /* UIView+Additional.swift */,
 				4C14203D2A462D5200962761 /* NSObjectProtocol+Additional.swift */,
 			);
@@ -226,8 +223,6 @@
 				4C1F6A602A3D0D86000A7D05 /* Assets.xcassets */,
 				4C1F6A622A3D0D86000A7D05 /* LaunchScreen.storyboard */,
 				4C1F6A652A3D0D86000A7D05 /* Info.plist */,
-				4C1F6A872A3D0E7F000A7D05 /* TodoItem.swift */,
-				4C1F6A892A3D0EB5000A7D05 /* FileCache.swift */,
 				4C34C5DB2A4DEBEE00ADEE7B /* CheckButton.swift */,
 				4C34C5DF2A4DFB6800ADEE7B /* VerticallyCenteredTextView.swift */,
 				4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */,
@@ -299,6 +294,7 @@
 			buildConfigurationList = 4C1F6A7E2A3D0D86000A7D05 /* Build configuration list for PBXNativeTarget "TodoApp" */;
 			buildPhases = (
 				E1D5E81F22EC7C9561CC3744 /* [CP] Check Pods Manifest.lock */,
+				4C3176462A4FC8CD004EAA37 /* SwiftLint */,
 				4C1F6A502A3D0D84000A7D05 /* Sources */,
 				4C1F6A512A3D0D84000A7D05 /* Frameworks */,
 				4C1F6A522A3D0D84000A7D05 /* Resources */,
@@ -309,6 +305,10 @@
 			dependencies = (
 			);
 			name = TodoApp;
+			packageProductDependencies = (
+				4C6612452A4FBFE100AC550F /* TodoItemPackage */,
+				4C6612482A4FC36200AC550F /* CocoaLumberjack */,
+			);
 			productName = TodoApp;
 			productReference = 4C1F6A542A3D0D84000A7D05 /* TodoApp.app */;
 			productType = "com.apple.product-type.application";
@@ -384,6 +384,10 @@
 				Base,
 			);
 			mainGroup = 4C1F6A4B2A3D0D84000A7D05;
+			packageReferences = (
+				4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage.git" */,
+				4C6612472A4FC36200AC550F /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+			);
 			productRefGroup = 4C1F6A552A3D0D84000A7D05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -478,6 +482,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TodoApp-TodoAppUITests/Pods-TodoApp-TodoAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4C3176462A4FC8CD004EAA37 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		64DA0308CC65A539468779D3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,13 +559,11 @@
 				4C34C5E92A4F531B00ADEE7B /* ChooseDataView.swift in Sources */,
 				4C141FFA2A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift in Sources */,
 				4C14203E2A462D5200962761 /* NSObjectProtocol+Additional.swift in Sources */,
-				4C1F6A8C2A3D0ECC000A7D05 /* Date+Additional.swift in Sources */,
 				4C34C5E22A4E264E00ADEE7B /* TodoItemsProps.swift in Sources */,
 				4C1420402A46366900962761 /* CustomScrollView.swift in Sources */,
 				4C141FF12A44C42C00962761 /* SetupTodoItemView.swift in Sources */,
 				4C34C5E42A4F402D00ADEE7B /* TodoItemProps.swift in Sources */,
 				4C141FF82A44E3AE00962761 /* SetupTodoItemPresenter.swift in Sources */,
-				4C1F6A882A3D0E7F000A7D05 /* TodoItem.swift in Sources */,
 				4C34C5D82A4DCF8C00ADEE7B /* TodoItemsListViewController.swift in Sources */,
 				4C34C5D12A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift in Sources */,
 				4C14203C2A462BA000962761 /* UIView+Additional.swift in Sources */,
@@ -551,7 +571,6 @@
 				4C34C5D32A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift in Sources */,
 				4C34C5EB2A4F8B2E00ADEE7B /* CustomTransition.swift in Sources */,
 				4C34C5DA2A4DCF9C00ADEE7B /* TodoItemsListCell.swift in Sources */,
-				4C1F6A8A2A3D0EB5000A7D05 /* FileCache.swift in Sources */,
 				4C1F6A5A2A3D0D84000A7D05 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,6 +913,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SoKoL-ll/TodoItemPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
+		4C6612472A4FC36200AC550F /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 3.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4C6612452A4FBFE100AC550F /* TodoItemPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage.git" */;
+			productName = TodoItemPackage;
+		};
+		4C6612482A4FC36200AC550F /* CocoaLumberjack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C6612472A4FC36200AC550F /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjack;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C1F6A4C2A3D0D84000A7D05 /* Project object */;
 }

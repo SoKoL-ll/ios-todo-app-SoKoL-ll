@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import TodoItemPackage
 
 class ChooseImportantView: UIView {
     
@@ -38,11 +39,11 @@ class ChooseImportantView: UIView {
         let segmentedIndex = target.selectedSegmentIndex
         switch segmentedIndex {
         case 0:
-            props?.updateImportance?(.unimportant)
+            props?.updateImportance?(Importance.unimportant)
         case 2:
-            props?.updateImportance?(.important)
+            props?.updateImportance?(Importance.important)
         default:
-            props?.updateImportance?(.common)
+            props?.updateImportance?(Importance.common)
         }
     }
     

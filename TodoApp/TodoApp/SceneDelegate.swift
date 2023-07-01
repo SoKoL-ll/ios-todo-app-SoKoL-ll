@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TodoItemPackage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,35 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let fileCache = FileCache()
     lazy var presenter = TodoItemsListPresenter(fileCache: fileCache, sceneDelegate: self)
     lazy var setupTodoItemPresenter = SetupTodoItemPresenter(fileCache: fileCache, sceneDelegate: self)
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         guard let sceneDelegate = (scene as? UIWindowScene) else { return }
-        
-//        let fileCache = FileCache()
-//        fileCache.appendNewItem(item: TodoItem(id: "4", text: "купить машину", importance: Importance.unimportant, deadline: Date.toDate(from: "11.11.2024") ?? Date(), isDone: true, creationDate: Date.toDate(from: "11.12.2024") ?? Date(), modifiedDate: Date.toDate(from: "11.10.2024") ?? Date()))
-//
-//        fileCache.appendNewItem(item: TodoItem(id: "5", text: "Найти Жену", importance: Importance.important, deadline: Date.toDate(from: "11.11.2024") ?? Date(), isDone: true, creationDate: Date.toDate(from: "11.12.2024") ?? Date(), modifiedDate: Date.toDate(from: "11.10.2024") ?? Date()))
-//
-//
-//        fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
-//        fileCache.loadTodoItemsFromJsonFile(file: "TodoItems.Json")
         window = UIWindow(windowScene: sceneDelegate)
-        
         let rootViewController: UIViewController
-        
         presenter.build()
         rootViewController = presenter.open()
         let navigationController = UINavigationController(rootViewController: rootViewController)
-        
         navigationController.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -73,10 +59,10 @@ extension SceneDelegate: TodoItemsListDelegate {
         let customTransitionDelegate = CustomTransitionDelegate()
         setupTodoItemPresenter.build()
         setupTodoItemPresenter.setupWithTodoItem(id: id)
-        let vc = UINavigationController(rootViewController: setupTodoItemPresenter.open())
-        vc.transitioningDelegate = customTransitionDelegate
-        vc.modalPresentationStyle = .custom
-        self.window?.rootViewController?.present(vc, animated: true)
+        let viewControllerSetup = UINavigationController(rootViewController: setupTodoItemPresenter.open())
+        viewControllerSetup.transitioningDelegate = customTransitionDelegate
+        viewControllerSetup.modalPresentationStyle = .custom
+        self.window?.rootViewController?.present(viewControllerSetup, animated: true)
     }
     
     func createNewCell(id: String) {

@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import TodoItemPackage
+import CocoaLumberjack
 
 protocol TodoItemsListDelegate {
     func todoItemsCellDidTap(id: String)
@@ -79,7 +81,10 @@ class TodoItemsListPresenter: TodoItemsListPresenterProtocol {
             
             todoItemsCell.append(TodoItemCellProps(deadline: item.deadline,
                                                    text: item.text,
-                                                   checkButtonProps: TodoItemCellProps.CheckButtonProps(isDone: item.checkButtonProps.isDone, id: item.checkButtonProps.id, importance: item.checkButtonProps.importance,
+                                                   checkButtonProps: TodoItemCellProps.CheckButtonProps(
+                                                    isDone: item.checkButtonProps.isDone,
+                                                    id: item.checkButtonProps.id,
+                                                    importance: item.checkButtonProps.importance,
                                                                                                         onToggle: onToggle(counter)),
                                                     id: item.id, openCell: { [weak self] in
                 self?.delegate?.todoItemsCellDidTap(id: item.id)
