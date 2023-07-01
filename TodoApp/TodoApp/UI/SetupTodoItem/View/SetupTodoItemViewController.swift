@@ -9,31 +9,39 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol SetupTodoItemRendering {
+    func render(props: TodoItemProps)
+}
+
 class SetupTodoItemViewController: UIViewController {
-    private let presenter: SetupTodoItemPresenterProtocol
+    private var props: TodoItemProps?
     
     private lazy var mainView: SetupTodoItemView = {
         let view = SetupTodoItemView()
-        view.delegate = self
         view.isUserInteractionEnabled = true
         return view
     }()
     
-    init(presenter: SetupTodoItemPresenterProtocol) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     
         view.addSubview(mainView)
         let saveButton = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveTodoItem))
+        let cancelButton = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(cancelTodoItem))
         navigationItem.title = "Дело"
         navigationItem.rightBarButtonItem = saveButton
+        navigationItem.leftBarButtonItem = cancelButton
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
     @objc func saveTodoItem() {
-        presenter.saveTodoItem()
+        props?.saveTodoItem?()
+    }
+    
+    @objc func cancelTodoItem() {
+        props?.cancel?()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -49,20 +57,9 @@ class SetupTodoItemViewController: UIViewController {
     }
 }
 
-extension SetupTodoItemViewController: SetupTodoItemViewDelegate {
-    func deleteTodoItem() {
-        presenter.deleteTodoItem()
-    }
-    
-    func updateImportance(importance: Importance) {
-        presenter.updateImportance(importance: importance)
-    }
-    
-    func updateDescriptionField(text: String) {
-        presenter.updateDescriptionField(text: text)
-    }
-    
-    func dateDidChanged(date: Date) {
-        presenter.dateDidChanged(date: date)
+extension SetupTodoItemViewController: SetupTodoItemRendering {
+    func render(props: TodoItemProps) {
+        self.props = props
+        self.mainView.render(props: props)
     }
 }

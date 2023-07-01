@@ -10,19 +10,29 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    let fileCache = FileCache()
+    lazy var presenter = TodoItemsListPresenter(fileCache: fileCache, sceneDelegate: self)
+    lazy var setupTodoItemPresenter = SetupTodoItemPresenter(fileCache: fileCache, sceneDelegate: self)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let sceneDelegate = (scene as? UIWindowScene) else { return }
         
+//        let fileCache = FileCache()
+//        fileCache.appendNewItem(item: TodoItem(id: "4", text: "купить машину", importance: Importance.unimportant, deadline: Date.toDate(from: "11.11.2024") ?? Date(), isDone: true, creationDate: Date.toDate(from: "11.12.2024") ?? Date(), modifiedDate: Date.toDate(from: "11.10.2024") ?? Date()))
+//
+//        fileCache.appendNewItem(item: TodoItem(id: "5", text: "Найти Жену", importance: Importance.important, deadline: Date.toDate(from: "11.11.2024") ?? Date(), isDone: true, creationDate: Date.toDate(from: "11.12.2024") ?? Date(), modifiedDate: Date.toDate(from: "11.10.2024") ?? Date()))
+//
+//
+//        fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
+//        fileCache.loadTodoItemsFromJsonFile(file: "TodoItems.Json")
         window = UIWindow(windowScene: sceneDelegate)
         
         let rootViewController: UIViewController
         
-        rootViewController = SetupTodoItemAssembly().assembly()
-        
+        presenter.build()
+        rootViewController = presenter.open()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
+        navigationController.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
@@ -58,3 +68,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate: TodoItemsListDelegate {
+    func todoItemsCellDidTap(id: String) {
+        let customTransitionDelegate = CustomTransitionDelegate()
+        setupTodoItemPresenter.build()
+        setupTodoItemPresenter.setupWithTodoItem(id: id)
+        let vc = UINavigationController(rootViewController: setupTodoItemPresenter.open())
+        vc.transitioningDelegate = customTransitionDelegate
+        vc.modalPresentationStyle = .custom
+        self.window?.rootViewController?.present(vc, animated: true)
+    }
+    
+    func createNewCell(id: String) {
+        setupTodoItemPresenter.build()
+        setupTodoItemPresenter.setupNewTodoItem(id: id)
+        self.window?.rootViewController?.present(UINavigationController(rootViewController: setupTodoItemPresenter.open()), animated: true)
+    }
+    
+}
+
+extension SceneDelegate: SetupTodoItemDelegate {
+    func closeScreen() {
+        self.window?.rootViewController?.dismiss(animated: true)
+        self.presenter.update()
+    }
+    
+    
+}

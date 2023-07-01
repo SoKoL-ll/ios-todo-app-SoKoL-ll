@@ -69,7 +69,7 @@ extension TodoItem {
         }
         
         if let deadline = self.deadline {
-            data["deadLine"] = deadline.toString()
+            data["deadline"] = deadline.toString()
         }
         
         if let modifiedDate = self.modifiedDate {
