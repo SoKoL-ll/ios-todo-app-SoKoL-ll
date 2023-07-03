@@ -294,7 +294,6 @@
 			buildConfigurationList = 4C1F6A7E2A3D0D86000A7D05 /* Build configuration list for PBXNativeTarget "TodoApp" */;
 			buildPhases = (
 				E1D5E81F22EC7C9561CC3744 /* [CP] Check Pods Manifest.lock */,
-				4C3176462A4FC8CD004EAA37 /* SwiftLint */,
 				4C1F6A502A3D0D84000A7D05 /* Sources */,
 				4C1F6A512A3D0D84000A7D05 /* Frameworks */,
 				4C1F6A522A3D0D84000A7D05 /* Resources */,
@@ -385,7 +384,7 @@
 			);
 			mainGroup = 4C1F6A4B2A3D0D84000A7D05;
 			packageReferences = (
-				4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage.git" */,
+				4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage" */,
 				4C6612472A4FC36200AC550F /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
 			);
 			productRefGroup = 4C1F6A552A3D0D84000A7D05 /* Products */;
@@ -481,24 +480,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TodoApp-TodoAppUITests/Pods-TodoApp-TodoAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		4C3176462A4FC8CD004EAA37 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		64DA0308CC65A539468779D3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -915,7 +896,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage.git" */ = {
+		4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SoKoL-ll/TodoItemPackage.git";
 			requirement = {
@@ -936,7 +917,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		4C6612452A4FBFE100AC550F /* TodoItemPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage.git" */;
+			package = 4C6612442A4FBFE100AC550F /* XCRemoteSwiftPackageReference "TodoItemPackage" */;
 			productName = TodoItemPackage;
 		};
 		4C6612482A4FC36200AC550F /* CocoaLumberjack */ = {

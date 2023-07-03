@@ -23,6 +23,7 @@ class TodoItemsListCell: UITableViewCell, CellRendring {
     lazy var label: UILabel = {
         let view = UILabel()
         view.numberOfLines = 3
+        view.textColor = UIColor(named: "textColor")
         view.lineBreakMode = .byTruncatingTail
         view.font = .systemFont(ofSize: 17)
         return view
@@ -43,7 +44,6 @@ class TodoItemsListCell: UITableViewCell, CellRendring {
     
     lazy var deadline: UIView = {
         let view = UIView()
-        //view.frame.size = CGSize(width: 73, height: 20)
         let config = UIImage.SymbolConfiguration(scale: .small)
         let symbolImage = UIImage(systemName: "calendar", withConfiguration: config)
         let templateImage = symbolImage?.withRenderingMode(.alwaysTemplate)

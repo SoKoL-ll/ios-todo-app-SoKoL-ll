@@ -100,6 +100,8 @@ class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
             todoItem.isSwitcherState = !todoItem.isSwitcherState
             if todoItem.deadline == nil {
                 todoItem.deadline = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+            } else {
+                todoItem.deadline = nil
             }
             self.todoItem = todoItem
             self.rerender()

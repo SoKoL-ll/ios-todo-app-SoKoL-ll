@@ -243,6 +243,12 @@ extension SetupTodoItemView: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        if descriptionField.text == "" {
+            descriptionField.text = "Что хотите сделать?"
+            descriptionField.textColor = UIColor.lightGray
+        } else {
+            props?.textDidChange?(descriptionField.text)
+        }
         let size = CGSize(width: textView.frame.width, height: .infinity)
         let estimatedSize = textView.sizeThatFits(size)
         
@@ -262,6 +268,9 @@ extension SetupTodoItemView {
         descriptionField.text = props?.text
         if descriptionField.text != "" {
             descriptionField.textColor = UIColor(named: "textColor")
+        } else {
+            descriptionField.text = "Что хотите сделать?"
+            descriptionField.textColor = UIColor.lightGray
         }
         self.chooseImportance.render(props: props)
         self.chooseData.render(props: props)

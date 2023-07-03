@@ -88,7 +88,7 @@ class TodoItemsListPresenter: TodoItemsListPresenterProtocol {
                                                                                                         onToggle: onToggle(counter)),
                                                     id: item.id, openCell: { [weak self] in
                 self?.delegate?.todoItemsCellDidTap(id: item.id)
-            }, deleteCell: deleteCell(item.id)))
+            }, deleteCell: deleteCell(item.id, counter)))
             
             counter += 1
         }
@@ -122,12 +122,13 @@ class TodoItemsListPresenter: TodoItemsListPresenterProtocol {
         }
     }
     
-    func deleteCell(_ id: String) -> (() -> ()) {
-        return { [weak self, id] in
+    func deleteCell(_ id: String, _ pos: Int) -> (() -> ()) {
+        return { [weak self, id, pos] in
             guard let self else { return }
             
             let _ = self.fileCache.removeItem(id: id)
-            updateCells()
+//            updateCells()
+            todoItems.remove(at: pos)
             self.rerender()
         }
     }
