@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SoKoL-ll/TodoItemPackage.git",
       "state" : {
-        "revision" : "bdebe703f16c7df26d368339e04d9de439cc98a9",
-        "version" : "1.0.5"
+        "revision" : "90ada73dec046fc88a11eadf7eec2a558393ae06",
+        "version" : "1.1.0"
       }
     }
   ],
