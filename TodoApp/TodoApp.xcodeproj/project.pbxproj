@@ -36,6 +36,7 @@
 		4C34C5ED2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */; };
 		4C6612462A4FBFE100AC550F /* TodoItemPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6612452A4FBFE100AC550F /* TodoItemPackage */; };
 		4C6612492A4FC36200AC550F /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6612482A4FC36200AC550F /* CocoaLumberjack */; };
+		4C889BA52A590FBD00DFCAEE /* URLSession+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C889BA42A590FBD00DFCAEE /* URLSession+Additional.swift */; };
 		4CEDE0CA2A5313F800A0573C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEDE07D2A53015400A0573C /* WidgetKit.framework */; };
 		4CEDE0CB2A5313F800A0573C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEDE07F2A53015400A0573C /* SwiftUI.framework */; };
 		4CEDE0CE2A5313F800A0573C /* TodoAppWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0CD2A5313F800A0573C /* TodoAppWidgetBundle.swift */; };
@@ -119,6 +120,7 @@
 		4C34C5E82A4F531B00ADEE7B /* ChooseDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDataView.swift; sourceTree = "<group>"; };
 		4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionDelegate.swift; sourceTree = "<group>"; };
+		4C889BA42A590FBD00DFCAEE /* URLSession+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Additional.swift"; sourceTree = "<group>"; };
 		4CEDE07D2A53015400A0573C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4CEDE07F2A53015400A0573C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4CEDE0C92A5313F800A0573C /* TodoAppWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodoAppWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 			children = (
 				4C14203B2A462BA000962761 /* UIView+Additional.swift */,
 				4C14203D2A462D5200962761 /* NSObjectProtocol+Additional.swift */,
+				4C889BA42A590FBD00DFCAEE /* URLSession+Additional.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				4C141FFA2A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift in Sources */,
 				4C14203E2A462D5200962761 /* NSObjectProtocol+Additional.swift in Sources */,
 				4C34C5E22A4E264E00ADEE7B /* TodoItemsProps.swift in Sources */,
+				4C889BA52A590FBD00DFCAEE /* URLSession+Additional.swift in Sources */,
 				4C1420402A46366900962761 /* CustomScrollView.swift in Sources */,
 				4C141FF12A44C42C00962761 /* SetupTodoItemView.swift in Sources */,
 				4C34C5E42A4F402D00ADEE7B /* TodoItemProps.swift in Sources */,
