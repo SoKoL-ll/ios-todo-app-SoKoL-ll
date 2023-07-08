@@ -11,5 +11,5 @@ import UIKit
 protocol SetupTodoItemPresenterProtocol: AnyObject {
     func build()
     func open() -> UIViewController
-    func setupWithTodoItem(id: String)
+    func setupWithTodoItem(id: String, revision: Int)
 }

@@ -127,7 +127,7 @@ extension TodoItemsListViewController: UITableViewDelegate, UITableViewDataSourc
         return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: {
             let vc = SetupTodoItemViewController()
             vc.render(props: TodoItemProps(text: self.props?.todoItemsCells[indexPath.row].text ?? "",
-                                           importance: self.props?.todoItemsCells[indexPath.row].checkButtonProps.importance ?? .common,
+                                           importance: self.props?.todoItemsCells[indexPath.row].checkButtonProps.importance ?? .basic,
                                            isDataPickerOpen: false,
                                            isSwitcherState: self.props?.todoItemsCells[indexPath.row].deadline != nil,
                                            didOpenDatapiker: nil,

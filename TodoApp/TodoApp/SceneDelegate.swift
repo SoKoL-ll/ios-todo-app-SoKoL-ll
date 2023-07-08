@@ -12,8 +12,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let fileCache = FileCache()
-    lazy var presenter = TodoItemsListPresenter(fileCache: fileCache, sceneDelegate: self)
-    lazy var setupTodoItemPresenter = SetupTodoItemPresenter(fileCache: fileCache, sceneDelegate: self)
+    lazy var urlSession = URLSession(configuration: .default)
+    lazy var networkClient = NetworkClientImp(urlSession: urlSession)
+    lazy var networkService = NetworkServiceImp(networkClient: networkClient)
+    lazy var presenter = TodoItemsListPresenter(fileCache: fileCache, sceneDelegate: self, networkService: networkService)
+    lazy var setupTodoItemPresenter = SetupTodoItemPresenter(fileCache: fileCache, networkService: networkService, sceneDelegate: self, revision: presenter.revision)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let sceneDelegate = (scene as? UIWindowScene) else { return }
@@ -55,19 +58,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 extension SceneDelegate: TodoItemsListDelegate {
-    func todoItemsCellDidTap(id: String) {
-        let customTransitionDelegate = CustomTransitionDelegate()
+    func todoItemsCellDidTap(id: String, revision: Int) {
         setupTodoItemPresenter.build()
-        setupTodoItemPresenter.setupWithTodoItem(id: id)
-        let viewControllerSetup = UINavigationController(rootViewController: setupTodoItemPresenter.open())
-        viewControllerSetup.transitioningDelegate = customTransitionDelegate
-        viewControllerSetup.modalPresentationStyle = .custom
-        self.window?.rootViewController?.present(viewControllerSetup, animated: true)
+        setupTodoItemPresenter.setupWithTodoItem(id: id, revision: revision)
+        self.window?.rootViewController?.present(UINavigationController(rootViewController: setupTodoItemPresenter.open()), animated: true)
     }
     
-    func createNewCell(id: String) {
+    func createNewCell(id: String, revision: Int) {
         setupTodoItemPresenter.build()
-        setupTodoItemPresenter.setupNewTodoItem(id: id)
+        setupTodoItemPresenter.setupNewTodoItem(id: id, revision: revision)
         self.window?.rootViewController?.present(UINavigationController(rootViewController: setupTodoItemPresenter.open()), animated: true)
     }
     
