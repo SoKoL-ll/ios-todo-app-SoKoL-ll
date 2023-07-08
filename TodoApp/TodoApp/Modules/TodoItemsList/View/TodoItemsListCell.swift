@@ -137,7 +137,7 @@ class TodoItemsListCell: UITableViewCell, CellRendring {
         case .important:
             importanceImage.image = UIImage(named: "excplanationMark")
             checkButton.layer.borderColor = UIColor.systemRed.cgColor
-        case .unimportant:
+        case .low:
             importanceImage.image = UIImage(systemName: "arrow.down")?.withRenderingMode(.alwaysOriginal).withTintColor(.lightGray)
         default:
             importanceImage.isHidden = true
