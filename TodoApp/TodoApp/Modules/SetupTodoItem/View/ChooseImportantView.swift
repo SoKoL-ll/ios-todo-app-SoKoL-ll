@@ -39,11 +39,11 @@ class ChooseImportantView: UIView {
         let segmentedIndex = target.selectedSegmentIndex
         switch segmentedIndex {
         case 0:
-            props?.updateImportance?(Importance.unimportant)
+            props?.updateImportance?(Importance.low)
         case 2:
             props?.updateImportance?(Importance.important)
         default:
-            props?.updateImportance?(Importance.common)
+            props?.updateImportance?(Importance.basic)
         }
     }
     
@@ -52,7 +52,7 @@ class ChooseImportantView: UIView {
         switch props?.importance {
         case .important:
             segmentControl.selectedSegmentIndex = 2
-        case .unimportant:
+        case .low:
             segmentControl.selectedSegmentIndex = 0
         default:
             segmentControl.selectedSegmentIndex = 1
