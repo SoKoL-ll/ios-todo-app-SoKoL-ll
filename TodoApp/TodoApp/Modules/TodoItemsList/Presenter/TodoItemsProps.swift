@@ -30,7 +30,6 @@ struct TodoItemCellProps {
     
     struct CheckButtonProps {
         var isDone: Bool
-        var id: Int
         let importance: Importance
         let onToggle: (() -> ())?
     }

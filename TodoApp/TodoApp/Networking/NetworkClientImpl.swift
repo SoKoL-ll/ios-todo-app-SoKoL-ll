@@ -8,18 +8,13 @@
 import Foundation
 
 struct NetworkClientImp: NetworkClient {
-    // MARK: - Properties
 
     private let urlSession: URLSession
-
-    // MARK: - Lifecycle
 
     init(urlSession: URLSession) {
         self.urlSession = urlSession
         urlSession.configuration.timeoutIntervalForRequest = Constants.timeout
     }
-
-    // MARK: - Public
 
     @discardableResult
     func processRequest<T: Decodable>(
@@ -77,8 +72,6 @@ struct NetworkClientImp: NetworkClient {
         return nil
     }
 
-    // MARK: - Private
-
     private func createUrlRequest(from request: HTTPRequest) throws -> URLRequest {
         guard var urlComponents = URLComponents(string: request.route) else {
             throw HTTPError.missingURL
@@ -115,8 +108,6 @@ struct NetworkClientImp: NetworkClient {
 }
 
 extension URLSessionDataTask: Cancellable {}
-
-// MARK: - Nested types
 
 extension NetworkClientImp {
     enum Constants {

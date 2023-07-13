@@ -15,19 +15,15 @@ protocol SetupTodoItemDelegate {
 
 class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
     private var render: (SetupTodoItemRendering & UIViewController)?
-    private let fileCache: FileCache
-    private let networkService: NetworkService
     private var todoItem: TodoItemProps?
+    private let storageManager: StorageManager
     private var id: String?
+    private var isNew: Bool = true
     private var delegate: SetupTodoItemDelegate?
-    private var revision: Int
-    private var isNew = false
     
-    init(fileCache: FileCache, networkService: NetworkService, sceneDelegate: SetupTodoItemDelegate, revision: Int) {
-        self.fileCache = fileCache
+    init(storageManager: StorageManager, sceneDelegate: SetupTodoItemDelegate) {
+        self.storageManager = storageManager
         self.delegate = sceneDelegate
-        self.networkService = networkService
-        self.revision = revision
     }
     
     func build() {
@@ -36,24 +32,8 @@ class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
     
     func setupWithTodoItem(id: String, revision: Int) {
         self.id = id
-        self.revision = revision
         self.isNew = false
-        let todoItem = fileCache.todoItems[id]
-        self.todoItem = TodoItemProps(
-            deadline: todoItem?.deadline,
-            text: todoItem?.text ?? "",
-            importance: todoItem?.importance ?? .basic,
-            isDataPickerOpen: false,
-            isSwitcherState: false,
-            didOpenDatapiker: nil,
-            textDidChange: nil,
-            switchChange: nil,
-            setNewDate: nil,
-            cancel: nil,
-            saveTodoItem: nil,
-            updateDate: nil,
-            updateImportance: nil,
-            deleteItem: nil)
+        self.todoItem = storageManager.getItemFromCache(id: id)
         
         if let _ = self.todoItem?.deadline {
             self.todoItem?.isSwitcherState = true
@@ -62,11 +42,11 @@ class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
     
     func setupNewTodoItem(id: String, revision: Int) {
         self.id = id
-        self.revision = revision
         self.isNew = true
-        let todoItem = TodoItem(text: id, importance: .basic, isDone: false, creationDate: Date())
         self.todoItem = TodoItemProps(text: "",
-                                      importance: todoItem.importance,
+                                      importance: .basic,
+                                      createdDate: Date(),
+                                      isDone: false,
                                       isDataPickerOpen: false,
                                       isSwitcherState: false,
                                       didOpenDatapiker: nil,
@@ -90,6 +70,8 @@ class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
         TodoItemProps(deadline: todoItem?.deadline,
                       text: todoItem?.text ?? "",
                       importance: todoItem?.importance ?? .basic,
+                      createdDate: todoItem?.createdDate ?? Date(),
+                      isDone: todoItem?.isDone ?? false,
                       isDataPickerOpen: todoItem?.isDataPickerOpen ?? false,
                       isSwitcherState: todoItem?.isSwitcherState ?? false,
                       didOpenDatapiker: { [weak self] in
@@ -145,8 +127,11 @@ class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
         return { [weak self, id] in
             guard let self else { return }
             
-            let _ = self.fileCache.removeItem(id: id)
-            self.delegate?.closeScreen()
+            self.storageManager.delete(id: id) { [weak self] in
+                DispatchQueue.main.async {
+                    self?.delegate?.closeScreen()
+                }
+            }
         }
     }
     
@@ -154,74 +139,11 @@ class SetupTodoItemPresenter: SetupTodoItemPresenterProtocol {
         return { [weak self] in
             guard let self else { return }
             guard let todoItem = self.todoItem else { return }
-            self.fileCache.appendNewItem(item: TodoItem(id: self.id ?? "0",
-                                                        text: todoItem.text,
-                                                        importance: todoItem.importance,
-                                                        deadline: todoItem.deadline,
-                                                        isDone: false,
-                                                        creationDate: Date(),
-                                                        modifiedDate: Date()))
-            DispatchQueue.global().sync {
-                let networkTodoItem = OperationTodoItemNetworkModel(element: TodoItemNetworkModel(id: self.id ?? "0",
-                                                                                            text: todoItem.text,
-                                                                                            importance: todoItem.importance,
-                                                                                                  deadline: todoItem.deadline.map { Int($0.timeIntervalSince1970) },
-                                                                                            done: false,
-                                                                                            created_at: Int(Date().timeIntervalSince1970),
-                                                                                            changed_at: Int(Date().timeIntervalSince1970),
-                                                                                            last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"),
-                                                              revision: nil)
-                
-                guard let data = try? JSONEncoder().encode(networkTodoItem) else { return }
-                
-                print(try! JSONDecoder().decode(OperationTodoItemNetworkModel.self, from: data))
-                
-                if self.isNew {
-                    self.networkService.addTodoItem(revision: self.revision, data: data) { result in
-                        switch result {
-                        case .success(let response):
-                            var setDeadline: Date? = nil
-                            if let deadline = response.element.deadline {
-                                setDeadline = Date(timeIntervalSince1970: TimeInterval(deadline))
-                            }
-                        
-                            self.fileCache.appendNewItem(item: TodoItem(id: response.element.id,
-                                                                        text: response.element.text,
-                                                                        importance: response.element.importance,
-                                                                        deadline: setDeadline,
-                                                                        isDone: response.element.done,
-                                                                        creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
-                                                                        modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                            self.fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
-                        case .failure(let error):
-                            SyncTodoItems.isDirty = true
-                            print("Error occured \(error)")
-                        }
-                    }
-                } else {
-                    self.networkService.putTodoItem(id: self.id ?? "0", revision: self.revision, data: data) { result in
-                        switch result {
-                        case .success(let response):
-                            var setDeadline: Date? = nil
-                            if response.element.deadline != nil {
-                                setDeadline = Date(timeIntervalSince1970: TimeInterval(response.element.deadline ?? 0))
-                            }
-                            self.fileCache.appendNewItem(item: TodoItem(id: response.element.id,
-                                                                        text: response.element.text,
-                                                                        importance: response.element.importance,
-                                                                        deadline: setDeadline,
-                                                                        isDone: response.element.done,
-                                                                        creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
-                                                                        modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                            self.fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
-                        case .failure(let error):
-                            SyncTodoItems.isDirty = true
-                            print("Error occured \(error)")
-                        }
-                    }
+            self.storageManager.save(id: self.id ?? UUID().uuidString, todoItem: todoItem, isNew: self.isNew) { [weak self] in
+                DispatchQueue.main.async {
+                    self?.delegate?.closeScreen()
                 }
             }
-            self.delegate?.closeScreen()
         }
     }
 

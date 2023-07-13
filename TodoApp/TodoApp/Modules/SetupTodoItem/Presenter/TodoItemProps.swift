@@ -12,6 +12,8 @@ struct TodoItemProps {
     var deadline: Date?
     var text: String
     var importance: Importance
+    var createdDate: Date
+    var isDone: Bool
     
     var isDataPickerOpen: Bool
     var isSwitcherState: Bool

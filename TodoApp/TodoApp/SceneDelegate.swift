@@ -14,9 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let fileCache = FileCache()
     lazy var urlSession = URLSession(configuration: .default)
     lazy var networkClient = NetworkClientImp(urlSession: urlSession)
+    lazy var storageManager = StorageManager(fileCache: fileCache, networkService: networkService)
     lazy var networkService = NetworkServiceImp(networkClient: networkClient)
-    lazy var presenter = TodoItemsListPresenter(fileCache: fileCache, sceneDelegate: self, networkService: networkService)
-    lazy var setupTodoItemPresenter = SetupTodoItemPresenter(fileCache: fileCache, networkService: networkService, sceneDelegate: self, revision: presenter.revision)
+    lazy var presenter = TodoItemsListPresenter(storageManager: storageManager, sceneDelegate: self)
+    lazy var setupTodoItemPresenter = SetupTodoItemPresenter(storageManager: storageManager, sceneDelegate: self)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let sceneDelegate = (scene as? UIWindowScene) else { return }
@@ -75,7 +76,7 @@ extension SceneDelegate: TodoItemsListDelegate {
 extension SceneDelegate: SetupTodoItemDelegate {
     func closeScreen() {
         self.window?.rootViewController?.dismiss(animated: true)
-        self.presenter.update()
+        self.presenter.setupItems()
     }
     
     

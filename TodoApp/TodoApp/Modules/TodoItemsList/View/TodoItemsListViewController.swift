@@ -128,6 +128,8 @@ extension TodoItemsListViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = SetupTodoItemViewController()
             vc.render(props: TodoItemProps(text: self.props?.todoItemsCells[indexPath.row].text ?? "",
                                            importance: self.props?.todoItemsCells[indexPath.row].checkButtonProps.importance ?? .basic,
+                                           createdDate: Date(),
+                                           isDone: false,
                                            isDataPickerOpen: false,
                                            isSwitcherState: self.props?.todoItemsCells[indexPath.row].deadline != nil,
                                            didOpenDatapiker: nil,

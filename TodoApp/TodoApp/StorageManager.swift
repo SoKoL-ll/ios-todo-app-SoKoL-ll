@@ -15,20 +15,32 @@ class StorageManager {
     private let networkService: NetworkService
     private var revision: Int = 0
     private let queue = DispatchQueue(label: "todo.list.queue", qos: .userInitiated)
-
+    private let nameOfFileForItems = "TodoItems.json"
+    
     init(fileCache: FileCache, networkService: NetworkService) {
         self.fileCache = fileCache
         self.networkService = networkService
     }
     
     func save(id: String, todoItem: TodoItemProps, isNew: Bool, complition: @escaping () -> ()) {
+        self.fileCache.appendNewItem(item: TodoItem(id: id,
+                                                    text: todoItem.text,
+                                                    importance: todoItem.importance,
+                                                    deadline: todoItem.deadline,
+                                                    isDone: todoItem.isDone,
+                                                    creationDate: todoItem.createdDate,
+                                                    modifiedDate: Date()
+                                                   ))
+        
+        self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
+        
         queue.async {
             let networkTodoItem = OperationTodoItemNetworkModel(element: TodoItemNetworkModel(id: id,
                                                                                         text: todoItem.text,
                                                                                         importance: todoItem.importance,
                                                                                               deadline: todoItem.deadline.map { Int($0.timeIntervalSince1970) },
                                                                                         done: false,
-                                                                                        created_at: Int(Date().timeIntervalSince1970),
+                                                                                              created_at: Int(todoItem.createdDate.timeIntervalSince1970),
                                                                                         changed_at: Int(Date().timeIntervalSince1970),
                                                                                         last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"),
                                                           revision: nil)
@@ -51,7 +63,7 @@ class StorageManager {
                                                                     isDone: response.element.done,
                                                                     creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
                                                                     modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                        self.fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
+                        self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     case .failure(let error):
                         SyncTodoItems.isDirty = true
                         print("Error occured \(error)")
@@ -72,7 +84,7 @@ class StorageManager {
                                                                     isDone: response.element.done,
                                                                     creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
                                                                     modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                        self.fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
+                        self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     case .failure(let error):
                         SyncTodoItems.isDirty = true
                         print("Error occured \(error)")
@@ -84,6 +96,8 @@ class StorageManager {
     }
     
     func get(complition: @escaping () -> ()) {
+        self.fileCache.loadTodoItemsFromJsonFile(file: nameOfFileForItems)
+        
         queue.async {
             self.networkService.getAllTodoItems { result in
                 switch result {
@@ -92,7 +106,6 @@ class StorageManager {
                     self.fileCache.todoItems = [:]
                     guard let todoItems = response.list else { return }
                     for item in todoItems {
-//                        self.counterId = max(self.counterId, Int(item.id) ?? 0)
                         var setDeadline: Date? = nil
                         if item.deadline != nil {
                             setDeadline = Date(timeIntervalSince1970: TimeInterval(item.deadline ?? 0))
@@ -102,11 +115,12 @@ class StorageManager {
                                                                     importance: item.importance,
                                                                     deadline: setDeadline,
                                                                     isDone: item.done,
-                                                                    creationDate: Date(),
-                                                                    modifiedDate: nil)
+                                                                    creationDate: Date(timeIntervalSince1970: TimeInterval(item.created_at)),
+                                                                    modifiedDate: Date(timeIntervalSince1970: TimeInterval(item.changed_at))
+                                                                   )
                         )
                     }
-                    self.fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
+                    self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     complition()
                 case .failure(let error):
                     print("Error occured \(error)")
@@ -139,7 +153,7 @@ class StorageManager {
                                                                                         importance: toggleTodoItem.importance,
                                                                                               deadline: toggleTodoItem.deadline.map {Int($0.timeIntervalSince1970)},
                                                                                               done: toggleTodoItem.isDone,
-                                                                                        created_at: Int(Date().timeIntervalSince1970),
+                                                                                              created_at: Int(toggleTodoItem.creationDate.timeIntervalSince1970),
                                                                                         changed_at: Int(Date().timeIntervalSince1970),
                                                                                         last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"),
                                                           revision: nil)
@@ -160,7 +174,7 @@ class StorageManager {
                                                                 isDone: response.element.done,
                                                                 creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
                                                                 modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                    self.fileCache.saveTodoItemsToJsonFile(file: "TodoItems.json")
+                    self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     complition()
                 case .failure(let error):
                     print("Error occured \(error)")
@@ -173,18 +187,53 @@ class StorageManager {
         fileCache.todoItems[id]
     }
     
+    func changeToggle(id: String) {
+        guard let item = fileCache.todoItems[id] else { return }
+        fileCache.appendNewItem(item: TodoItem(id: item.id,
+                                               text: item.text,
+                                               importance: item.importance,
+                                               deadline: item.deadline,
+                                               isDone: !item.isDone,
+                                               creationDate: item.creationDate,
+                                               modifiedDate: item.modifiedDate
+                                              ))
+        put(id: id){}
+    }
+    
+    func getItemFromCache(id: String) -> TodoItemProps? {
+        guard let todoItem = fileCache.todoItems[id] else { return nil }
+        
+        return TodoItemProps(deadline: todoItem.deadline,
+                             text: todoItem.text,
+                             importance: todoItem.importance,
+                             createdDate: todoItem.creationDate,
+                             isDone: todoItem.isDone,
+                             isDataPickerOpen: false,
+                             isSwitcherState: false,
+                             didOpenDatapiker: nil,
+                             textDidChange: nil,
+                             switchChange: nil,
+                             setNewDate: nil,
+                             cancel: nil,
+                             saveTodoItem: nil,
+                             updateDate: nil,
+                             updateImportance: nil,
+                             deleteItem: nil
+        )
+    }
+    
     func getFromCache() -> [TodoItemCellProps]{
         var todoItemsCell = [TodoItemCellProps]()
-        var counter = 0
-        for item in fileCache.todoItems {
+        let todoItems = fileCache.todoItems.sorted { $0.value.creationDate > $1.value.creationDate }
+        for item in todoItems {
             todoItemsCell.append(TodoItemCellProps(deadline: item.value.deadline?.toString(),
                                                text: item.value.text,
-                                               checkButtonProps: TodoItemCellProps.CheckButtonProps(isDone: item.value.isDone, id: counter, importance: item.value.importance,
+                                               checkButtonProps: TodoItemCellProps.CheckButtonProps(isDone: item.value.isDone, importance: item.value.importance,
                                                                                                     onToggle: nil),
                                                id: item.value.id, openCell: nil, deleteCell: nil))
             
         }
-        
+
         return todoItemsCell
     }
     
