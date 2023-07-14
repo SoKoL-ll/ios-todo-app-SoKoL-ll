@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import TodoItemPackage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

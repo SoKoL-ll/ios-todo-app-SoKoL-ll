@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import TodoItemPackage
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -42,24 +41,24 @@ struct SimpleEntry: TimelineEntry {
 struct TodoAppWidgetEntryView : View {
     var entry: Provider.Entry
 
-    var fileCache = FileCache()
-    
-    func searchDeadlineItems() -> TodoItem? {
-        fileCache.loadTodoItemsFromJsonFile(file: "TodoItems.json")
-        
-        for item in fileCache.todoItems {
-            guard let deadline = item.value.deadline else {
-                continue
-            }
-            if deadline.toString() == Date().toString() {
-                return item.value
-            }
-        }
-        return nil
-    }
+//    var fileCache = FileCache()
+//
+//    func searchDeadlineItems() -> TodoItem? {
+//        fileCache.loadTodoItemsFromJsonFile(file: "TodoItems.json")
+//
+//        for item in fileCache.todoItems {
+//            guard let deadline = item.value.deadline else {
+//                continue
+//            }
+//            if deadline.toString() == Date().toString() {
+//                return item.value
+//            }
+//        }
+//        return nil
+//    }
     var body: some View {
-//        Text("kaka")
-        TodoAppWidgetView(todoItem: searchDeadlineItems())
+        Text("kaka")
+//        TodoAppWidgetView(todoItem: searchDeadlineItems())
     }
 }
 

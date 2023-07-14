@@ -6,16 +6,13 @@
 //
 
 import Foundation
-import TodoItemPackage
 import UIKit
 
-//Not working now
 class StorageManager {
     private let fileCache: FileCache
     private let networkService: NetworkService
     private var revision: Int = 0
     private let queue = DispatchQueue(label: "todo.list.queue", qos: .userInitiated)
-    private let nameOfFileForItems = "TodoItems.json"
     
     init(fileCache: FileCache, networkService: NetworkService) {
         self.fileCache = fileCache
@@ -32,15 +29,13 @@ class StorageManager {
                                                     modifiedDate: Date()
                                                    ))
         
-        self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
-        
         queue.async {
             let networkTodoItem = OperationTodoItemNetworkModel(element: TodoItemNetworkModel(id: id,
                                                                                         text: todoItem.text,
                                                                                         importance: todoItem.importance,
-                                                                                              deadline: todoItem.deadline.map { Int($0.timeIntervalSince1970) },
+                                                                                        deadline: todoItem.deadline.map { Int($0.timeIntervalSince1970) },
                                                                                         done: false,
-                                                                                              created_at: Int(todoItem.createdDate.timeIntervalSince1970),
+                                                                                            created_at: Int(todoItem.createdDate.timeIntervalSince1970),
                                                                                         changed_at: Int(Date().timeIntervalSince1970),
                                                                                         last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"),
                                                           revision: nil)
@@ -63,7 +58,6 @@ class StorageManager {
                                                                     isDone: response.element.done,
                                                                     creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
                                                                     modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                        self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     case .failure(let error):
                         SyncTodoItems.isDirty = true
                         print("Error occured \(error)")
@@ -84,7 +78,6 @@ class StorageManager {
                                                                     isDone: response.element.done,
                                                                     creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
                                                                     modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                        self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     case .failure(let error):
                         SyncTodoItems.isDirty = true
                         print("Error occured \(error)")
@@ -96,14 +89,13 @@ class StorageManager {
     }
     
     func get(complition: @escaping () -> ()) {
-        self.fileCache.loadTodoItemsFromJsonFile(file: nameOfFileForItems)
+        self.fileCache.loadTodoItems()
         
         queue.async {
             self.networkService.getAllTodoItems { result in
                 switch result {
                 case.success(let response):
                     self.revision = response.revision ?? 0
-                    self.fileCache.todoItems = [:]
                     guard let todoItems = response.list else { return }
                     for item in todoItems {
                         var setDeadline: Date? = nil
@@ -120,11 +112,10 @@ class StorageManager {
                                                                    )
                         )
                     }
-                    self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
-                    complition()
                 case .failure(let error):
                     print("Error occured \(error)")
                 }
+                complition()
             }
         }
     }
@@ -139,8 +130,8 @@ class StorageManager {
                 case .failure(let error):
                     print("Error occured \(error)")
                 }
+                complition()
             }
-            complition()
         }
     }
     
@@ -150,12 +141,12 @@ class StorageManager {
         DispatchQueue.global().async {
             let networkTodoItem = OperationTodoItemNetworkModel(element: TodoItemNetworkModel(id: toggleTodoItem.id,
                                                                                               text: toggleTodoItem.text,
-                                                                                        importance: toggleTodoItem.importance,
-                                                                                              deadline: toggleTodoItem.deadline.map {Int($0.timeIntervalSince1970)},
+                                                                                              importance: toggleTodoItem.importance,
+                                                                                              deadline: toggleTodoItem.deadline.map { Int($0.timeIntervalSince1970) },
                                                                                               done: toggleTodoItem.isDone,
                                                                                               created_at: Int(toggleTodoItem.creationDate.timeIntervalSince1970),
-                                                                                        changed_at: Int(Date().timeIntervalSince1970),
-                                                                                        last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"),
+                                                                                              changed_at: Int(Date().timeIntervalSince1970),
+                                                                                              last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"),
                                                           revision: nil)
             
             guard let data = try? JSONEncoder().encode(networkTodoItem) else { return }
@@ -174,7 +165,6 @@ class StorageManager {
                                                                 isDone: response.element.done,
                                                                 creationDate: Date(timeIntervalSince1970: TimeInterval(response.element.created_at)),
                                                                 modifiedDate: Date(timeIntervalSince1970: TimeInterval(response.element.changed_at))))
-                    self.fileCache.saveTodoItemsToJsonFile(file: self.nameOfFileForItems)
                     complition()
                 case .failure(let error):
                     print("Error occured \(error)")
@@ -248,7 +238,7 @@ class StorageManager {
                                                         deadline: item.value.deadline.map { Int($0.timeIntervalSince1970) },
                                                         done: item.value.isDone,
                                                         created_at: Int(item.value.creationDate.timeIntervalSince1970),
-                                                        changed_at: Int(item.value.modifiedDate!.timeIntervalSince1970),
+                                                        changed_at: Int(item.value.modifiedDate.timeIntervalSince1970),
                                                         last_updated_by: UIDevice.current.identifierForVendor?.uuidString ?? "0"))
             }
             let networkItem = TodoItemsNetworkModel(status: nil, list: listOfItems, revision: self.revision)
@@ -271,7 +261,7 @@ class StorageManager {
                                                                     deadline: setDeadline,
                                                                     isDone: item.done,
                                                                     creationDate: Date(),
-                                                                    modifiedDate: nil)
+                                                                    modifiedDate: Date())
                         )
                     }
                 case .failure(let error):

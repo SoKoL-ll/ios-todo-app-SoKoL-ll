@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import TodoItemPackage
 import UIKit
 
 protocol SetupTodoItemDelegate {

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import TodoItemPackage
 
 struct TodoItemsProps {
     let todoItemsCells: [TodoItemCellProps]

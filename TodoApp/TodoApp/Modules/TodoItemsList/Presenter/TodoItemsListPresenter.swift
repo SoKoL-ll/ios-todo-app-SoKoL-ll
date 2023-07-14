@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import TodoItemPackage
 import CocoaLumberjack
 
 protocol TodoItemsListDelegate {
@@ -41,12 +40,10 @@ class TodoItemsListPresenter: TodoItemsListPresenterProtocol {
         storageManager.get { [weak self] in
             guard let self = self else { return }
             self.todoItems = self.storageManager.getFromCache()
-            
             DispatchQueue.main.async {
                 self.rerender()
             }
         }
-        
     }
     
     func updateCells() {
