@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import TodoItemPackage
 
 struct TodoItemProps {
     var deadline: Date?

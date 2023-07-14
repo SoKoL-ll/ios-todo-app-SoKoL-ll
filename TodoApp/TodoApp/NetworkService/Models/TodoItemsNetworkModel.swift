@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import TodoItemPackage
 
 struct TodoItemsNetworkModel: Codable {
     let status: String?

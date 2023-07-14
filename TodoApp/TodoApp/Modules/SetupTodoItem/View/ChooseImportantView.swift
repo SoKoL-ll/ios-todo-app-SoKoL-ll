@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import TodoItemPackage
 
 class ChooseImportantView: UIView {
     
