@@ -35,7 +35,6 @@
 		4C34C5EB2A4F8B2E00ADEE7B /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */; };
 		4C34C5ED2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */; };
 		4C6612492A4FC36200AC550F /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 4C6612482A4FC36200AC550F /* CocoaLumberjack */; };
-		4C889BA72A5D63EE00DFCAEE /* URLSession+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C889BA62A5D63EE00DFCAEE /* URLSession+Additional.swift */; };
 		4C889BAA2A60185A00DFCAEE /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 4C889BA92A60185A00DFCAEE /* SQLite */; };
 		4C889BAF2A6031B600DFCAEE /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C889BAE2A6031B600DFCAEE /* SQLiteDatabase.swift */; };
 		4C889BB12A60386E00DFCAEE /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C889BB02A60386E00DFCAEE /* SQLiteManager.swift */; };
@@ -46,19 +45,7 @@
 		4C889BD42A61E0DE00DFCAEE /* TodoItemForCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C889BD22A61E0DE00DFCAEE /* TodoItemForCoreData+CoreDataProperties.swift */; };
 		4C889BD72A61E1FA00DFCAEE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C889BD62A61E1FA00DFCAEE /* CoreDataManager.swift */; };
 		4CEDE0DB2A53145800A0573C /* TodoAppWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0DA2A53145800A0573C /* TodoAppWidgetView.swift */; };
-		4CEDE0E62A55E79A00A0573C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0E52A55E79A00A0573C /* HTTPMethod.swift */; };
-		4CEDE0E82A55E7B000A0573C /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0E72A55E7B000A0573C /* HTTPError.swift */; };
-		4CEDE0EA2A55E7CF00A0573C /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0E92A55E7CF00A0573C /* HTTPNetworkResponse.swift */; };
-		4CEDE0ED2A55E82500A0573C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0EC2A55E82500A0573C /* NetworkService.swift */; };
-		4CEDE0EF2A55E83900A0573C /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0EE2A55E83900A0573C /* NetworkServiceImpl.swift */; };
-		4CEDE0F22A55E89000A0573C /* TodoItemsNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0F12A55E89000A0573C /* TodoItemsNetworkModel.swift */; };
-		4CEDE0FA2A571F8500A0573C /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0F92A571F8500A0573C /* NetworkClient.swift */; };
-		4CEDE0FC2A571FB400A0573C /* HTTPRequst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0FB2A571FB400A0573C /* HTTPRequst.swift */; };
-		4CEDE0FE2A571FFD00A0573C /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0FD2A571FFD00A0573C /* NetworkClientImpl.swift */; };
-		4CEDE1002A58720B00A0573C /* TodoItemNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE0FF2A58720B00A0573C /* TodoItemNetworkModel.swift */; };
-		4CEDE1042A589CBE00A0573C /* AddTodoItemNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE1032A589CBE00A0573C /* AddTodoItemNetworkModel.swift */; };
 		4CEDE1062A58C3CA00A0573C /* Date+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE1052A58C3CA00A0573C /* Date+Additional.swift */; };
-		4CEDE1082A58F37A00A0573C /* SyncTodoItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE1072A58F37A00A0573C /* SyncTodoItems.swift */; };
 		4CEDE10A2A58F4C000A0573C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDE1092A58F4C000A0573C /* StorageManager.swift */; };
 		5128D0588557480A2EE67029 /* Pods_TodoApp_TodoAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C8616F1255E98980D954A4 /* Pods_TodoApp_TodoAppUITests.framework */; };
 		8D115550C55550DB1A4530A7 /* Pods_TodoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFDC359439A8E3C01B80AFFC /* Pods_TodoApp.framework */; };
@@ -126,7 +113,6 @@
 		4C34C5E82A4F531B00ADEE7B /* ChooseDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDataView.swift; sourceTree = "<group>"; };
 		4C34C5EA2A4F8B2E00ADEE7B /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionDelegate.swift; sourceTree = "<group>"; };
-		4C889BA62A5D63EE00DFCAEE /* URLSession+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+Additional.swift"; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/ios-todo-app-SoKoL-ll 13.12.48/TodoApp/TodoApp/Extensions/URLSession+Additional.swift"; sourceTree = "<group>"; };
 		4C889BAE2A6031B600DFCAEE /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		4C889BB02A60386E00DFCAEE /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
 		4C889BB22A61A9F100DFCAEE /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
@@ -142,19 +128,7 @@
 		4CEDE0D12A5313FA00A0573C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CEDE0D32A5313FA00A0573C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CEDE0DA2A53145800A0573C /* TodoAppWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAppWidgetView.swift; sourceTree = "<group>"; };
-		4CEDE0E52A55E79A00A0573C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		4CEDE0E72A55E7B000A0573C /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
-		4CEDE0E92A55E7CF00A0573C /* HTTPNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNetworkResponse.swift; sourceTree = "<group>"; };
-		4CEDE0EC2A55E82500A0573C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		4CEDE0EE2A55E83900A0573C /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
-		4CEDE0F12A55E89000A0573C /* TodoItemsNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemsNetworkModel.swift; sourceTree = "<group>"; };
-		4CEDE0F92A571F8500A0573C /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		4CEDE0FB2A571FB400A0573C /* HTTPRequst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequst.swift; sourceTree = "<group>"; };
-		4CEDE0FD2A571FFD00A0573C /* NetworkClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
-		4CEDE0FF2A58720B00A0573C /* TodoItemNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemNetworkModel.swift; sourceTree = "<group>"; };
-		4CEDE1032A589CBE00A0573C /* AddTodoItemNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemNetworkModel.swift; sourceTree = "<group>"; };
 		4CEDE1052A58C3CA00A0573C /* Date+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additional.swift"; sourceTree = "<group>"; };
-		4CEDE1072A58F37A00A0573C /* SyncTodoItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTodoItems.swift; sourceTree = "<group>"; };
 		4CEDE1092A58F4C000A0573C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		50DC8AC9B9AC148909719C7B /* Pods-TodoApp-TodoAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoApp-TodoAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-TodoApp-TodoAppUITests/Pods-TodoApp-TodoAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A8EFF4C0781A710DDEEABE2 /* Pods_TodoAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,7 +229,6 @@
 				4C14203B2A462BA000962761 /* UIView+Additional.swift */,
 				4C14203D2A462D5200962761 /* NSObjectProtocol+Additional.swift */,
 				4CEDE1052A58C3CA00A0573C /* Date+Additional.swift */,
-				4C889BA62A5D63EE00DFCAEE /* URLSession+Additional.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,8 +262,6 @@
 				4C889BD52A61E17700DFCAEE /* CoreData */,
 				4C889BAB2A60300800DFCAEE /* SQLiteDatabaseManager */,
 				4C1F6A652A3D0D86000A7D05 /* Info.plist */,
-				4CEDE0EB2A55E80A00A0573C /* NetworkService */,
-				4CEDE0E42A55E78200A0573C /* Networking */,
 				4CEDE0E32A55E74200A0573C /* Common */,
 				4CEDE0E12A55E6C300A0573C /* Resources */,
 				4C141FED2A44C3FE00962761 /* Modules */,
@@ -399,40 +370,6 @@
 				4C34C5EC2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		4CEDE0E42A55E78200A0573C /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				4CEDE0E52A55E79A00A0573C /* HTTPMethod.swift */,
-				4CEDE0E72A55E7B000A0573C /* HTTPError.swift */,
-				4CEDE0E92A55E7CF00A0573C /* HTTPNetworkResponse.swift */,
-				4CEDE0F92A571F8500A0573C /* NetworkClient.swift */,
-				4CEDE0FB2A571FB400A0573C /* HTTPRequst.swift */,
-				4CEDE0FD2A571FFD00A0573C /* NetworkClientImpl.swift */,
-				4CEDE1072A58F37A00A0573C /* SyncTodoItems.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4CEDE0EB2A55E80A00A0573C /* NetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				4CEDE0F02A55E87900A0573C /* Models */,
-				4CEDE0EC2A55E82500A0573C /* NetworkService.swift */,
-				4CEDE0EE2A55E83900A0573C /* NetworkServiceImpl.swift */,
-			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		4CEDE0F02A55E87900A0573C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4CEDE0F12A55E89000A0573C /* TodoItemsNetworkModel.swift */,
-				4CEDE0FF2A58720B00A0573C /* TodoItemNetworkModel.swift */,
-				4CEDE1032A589CBE00A0573C /* AddTodoItemNetworkModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F4D3EB395033F7C069D81F60 /* Frameworks */ = {
@@ -699,42 +636,29 @@
 				4CEDE0DB2A53145800A0573C /* TodoAppWidgetView.swift in Sources */,
 				4CEDE10A2A58F4C000A0573C /* StorageManager.swift in Sources */,
 				4C141FF32A44E18A00962761 /* SetupTodoItemViewController.swift in Sources */,
-				4CEDE0E82A55E7B000A0573C /* HTTPError.swift in Sources */,
 				4C1F6A582A3D0D84000A7D05 /* AppDelegate.swift in Sources */,
 				4C34C5DC2A4DEBEE00ADEE7B /* CheckButton.swift in Sources */,
 				4C34C5E92A4F531B00ADEE7B /* ChooseDataView.swift in Sources */,
 				4C141FFA2A44E3E300962761 /* SetupTodoItemPresenterProtocol.swift in Sources */,
 				4C889BD32A61E0DE00DFCAEE /* TodoItemForCoreData+CoreDataClass.swift in Sources */,
 				4C889BAF2A6031B600DFCAEE /* SQLiteDatabase.swift in Sources */,
-				4CEDE0EA2A55E7CF00A0573C /* HTTPNetworkResponse.swift in Sources */,
 				4C14203E2A462D5200962761 /* NSObjectProtocol+Additional.swift in Sources */,
 				4C34C5E22A4E264E00ADEE7B /* TodoItemsProps.swift in Sources */,
 				4C1420402A46366900962761 /* CustomScrollView.swift in Sources */,
-				4CEDE0F22A55E89000A0573C /* TodoItemsNetworkModel.swift in Sources */,
 				4C141FF12A44C42C00962761 /* SetupTodoItemView.swift in Sources */,
-				4CEDE1082A58F37A00A0573C /* SyncTodoItems.swift in Sources */,
 				4C34C5E42A4F402D00ADEE7B /* TodoItemProps.swift in Sources */,
 				4C141FF82A44E3AE00962761 /* SetupTodoItemPresenter.swift in Sources */,
 				4C889BB12A60386E00DFCAEE /* SQLiteManager.swift in Sources */,
 				4C34C5D82A4DCF8C00ADEE7B /* TodoItemsListViewController.swift in Sources */,
 				4C34C5D12A4DCF4B00ADEE7B /* TodoItemsListPresenter.swift in Sources */,
-				4CEDE0FC2A571FB400A0573C /* HTTPRequst.swift in Sources */,
 				4C14203C2A462BA000962761 /* UIView+Additional.swift in Sources */,
-				4CEDE1002A58720B00A0573C /* TodoItemNetworkModel.swift in Sources */,
 				4C889BBB2A61DABA00DFCAEE /* CoreDataModel.xcdatamodeld in Sources */,
 				4C34C5ED2A4F8B5F00ADEE7B /* CustomTransitionDelegate.swift in Sources */,
 				4C34C5D32A4DCF5B00ADEE7B /* TodoItemsListPresenterProtocol.swift in Sources */,
-				4CEDE1042A589CBE00A0573C /* AddTodoItemNetworkModel.swift in Sources */,
 				4C34C5EB2A4F8B2E00ADEE7B /* CustomTransition.swift in Sources */,
-				4CEDE0EF2A55E83900A0573C /* NetworkServiceImpl.swift in Sources */,
 				4C889BD72A61E1FA00DFCAEE /* CoreDataManager.swift in Sources */,
 				4C889BD42A61E0DE00DFCAEE /* TodoItemForCoreData+CoreDataProperties.swift in Sources */,
-				4CEDE0E62A55E79A00A0573C /* HTTPMethod.swift in Sources */,
 				4C34C5DA2A4DCF9C00ADEE7B /* TodoItemsListCell.swift in Sources */,
-				4CEDE0FA2A571F8500A0573C /* NetworkClient.swift in Sources */,
-				4CEDE0FE2A571FFD00A0573C /* NetworkClientImpl.swift in Sources */,
-				4C889BA72A5D63EE00DFCAEE /* URLSession+Additional.swift in Sources */,
-				4CEDE0ED2A55E82500A0573C /* NetworkService.swift in Sources */,
 				4CEDE1062A58C3CA00A0573C /* Date+Additional.swift in Sources */,
 				4C889BB52A61AA0700DFCAEE /* TodoItem.swift in Sources */,
 				4C889BB32A61A9F100DFCAEE /* FileCache.swift in Sources */,
